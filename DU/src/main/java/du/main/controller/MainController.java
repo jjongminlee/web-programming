@@ -1,5 +1,7 @@
 package du.main.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import du.dept.domain.DeptVO;
+import du.dept.service.DeptService;
 import du.user.domain.UserVO;
 import du.user.service.UserService;
 
@@ -17,6 +22,9 @@ public class MainController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private DeptService deptService;
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String mainPage(HttpServletRequest request, @ModelAttribute UserVO user) {
@@ -33,8 +41,11 @@ public class MainController {
 	}
 	
 	@RequestMapping("/userInfo.do")
-	public String userInfo() {
-		return "user/userInfo.jsp";
+	public ModelAndView userInfo() {
+		ModelAndView mav = new ModelAndView("user/userInfo.jsp");
+		List<DeptVO> dept = deptService.selectDeptList();
+		mav.addObject("dept", dept);
+		return mav;
 	}
 	
 	@RequestMapping("/logout.do")

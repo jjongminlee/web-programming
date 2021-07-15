@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>부서 정보</title>
+<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+<script type="text/javascript" src="js/bootstrap/bootstrap.bundle.js"></script>
+</head>
+<body>
+<header>
+		<div class="logoDiv">
+			<img alt="대구대학교 로고" src="images/image.png">
+		</div>
+</header>
+<table class="table table-dark table-hover">
+	<thead>
+		<tr>
+			<th>부서코드</th>
+			<th>부서명</th>
+			<th>추가 기능</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach items="${dept }" var="item">
+			<tr>
+				<td><c:out value="${item.deptCd }"/></td>
+				<td><c:out value="${item.deptNm }"/></td>
+				<td><button type="button" onclick="window.location.href='deleteDept.do?deptCd=${item.deptCd}'">삭제</button>
+				</td>
+				
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
+	
+	<div>
+		<button type="button" onclick="window.location.href='deptInsertPage.do'">등록</button>
+		<button type="button" onclick="window.history.go(-1)">이전</button>
+	</div>
+</body>
+</html>

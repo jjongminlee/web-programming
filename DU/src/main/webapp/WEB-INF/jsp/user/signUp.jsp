@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +21,7 @@
 		</tr>
 		
 		<tr>
-			<th>ID</th>
+			<th>아이디</th>
 			<td><input type="text" name="userId" required></td>
 		</tr>
 		
@@ -33,10 +38,10 @@
 		<tr>
 			<th>부서</th>
 			<td><select name="deptCd" required>
-				<option value="01">개발부</option>
-				<option value="02">영업부</option>
-				<option value="03">총무부</option>
-			</td></select>
+				<c:forEach items="${dept }" var="item">
+					<option value="${item.deptCd }"><c:out value="${item.deptNm }"></c:out>
+				</c:forEach>
+			</select></td>
 		</tr>
 		
 		<tr>
