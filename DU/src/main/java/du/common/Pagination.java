@@ -3,9 +3,9 @@ package du.common;
 public class Pagination {
 	
 	// 한 페이지당 보여질 목록의 개수
-	private int listSize = 3;
+	private int listSize = 2;
 	// 한 페이지 범위에 보여질 페이지 개수
-	private int rangeSize = 3;
+	private int rangeSize = 2;
 	// 현재 목록의 페이지 번호
 	private int page;
 	// 각 페이지 범위 시작 번호

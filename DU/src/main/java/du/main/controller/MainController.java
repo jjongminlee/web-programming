@@ -53,4 +53,13 @@ public class MainController {
 		session.removeAttribute("USER");
 		return "login.jsp";
 	}
+	
+	@RequestMapping("/mainPage.do")
+	public String mainPage(HttpSession session) {
+		if(session.getAttribute("USER") == null) {
+			return "redirect:/loginPage.do";  //세션이 없으면 로그인 페이지로 이동
+		}
+		
+		return "main.jsp";
+	}
 }

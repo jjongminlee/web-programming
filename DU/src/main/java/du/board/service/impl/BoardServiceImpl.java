@@ -1,6 +1,9 @@
 package du.board.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import du.board.dao.BoardDAO;
 import du.board.domain.BoardVO;
 import du.board.service.BoardService;
 import du.common.Pagination;
+import du.user.domain.UserVO;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -18,16 +22,37 @@ public class BoardServiceImpl implements BoardService{
 	
 	
 	@Override
-	public List<BoardVO> selectBoardList(Pagination pagination) {
+	public List<BoardVO> selectBoardList(Pagination pagination, String title) {
 		
-		return boardDAO.selectBoardList(pagination);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("startList", pagination.getStartList());
+		map.put("listSize", pagination.getListSize());
+		map.put("title", title);
+		
+		
+		return boardDAO.selectBoardList(map);
 	}
 
 
 	@Override
-	public int selectBoardListCnt() {
+	public int selectBoardListCnt(String title) {
 		// TODO Auto-generated method stub
-		return boardDAO.selectBoardListCnt();
+	
+		return boardDAO.selectBoardListCnt(title);
+	}
+
+
+	@Override
+	public void insertBoard(BoardVO board, HttpSession session) {
+		// TODO Auto-generated method stub
+		
+		UserVO user = (UserVO) session.getAttribute("USER");
+		if(user != null) {
+			board.setWriterId(user.getUserId());
+			
+			boardDAO.insertBoard(board);
+		}
+		
 	}
 
 	
