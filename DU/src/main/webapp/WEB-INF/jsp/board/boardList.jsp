@@ -30,7 +30,7 @@
 		
 	</div>
 	
-	<table class="table table-stiped" id="dataList">
+	<table class="table table-stiped table-hover" id="dataList">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -42,7 +42,7 @@
 		
 		<tbody>
 			<c:forEach items="${boardList }" var="item" varStatus="status">
-				<tr>
+				<tr ondblclick="trDblClick('${item.idx}');">
 					<td><c:out value="${status.count + pagination.startList}"/></td>
 					<td><c:out value="${item.title }"/></td>
 					<td><c:out value="${item.writerName }"/></td>
@@ -146,6 +146,12 @@
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
 		url = url + "&title=" + searchTitle.value;
+		
+		location.href = url;
+	}
+	
+	function trDblClick(idx){
+		var url = "boardInfoPage/"+idx+".do"
 		
 		location.href = url;
 	}

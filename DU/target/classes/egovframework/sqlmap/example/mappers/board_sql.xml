@@ -5,12 +5,11 @@
 	<resultMap type="boardMap" id="BoardVO">
 		<id property="idx"  column="idx" />
 		<result property="title"  			column="title" />
-		<result property="content"  		column="cotent" />		
+		<result property="content"  		column="content" />		
 		<result property="writerId" 		column="writer_id"/>		
 		<result property="writerName" 		column="writer_name"/>
 		<result property="registDate" 		column="regist_date"/>
 		<result property="modifyDate" 		column="modify_date"/>
-	
 	</resultMap>
 	
 	<select id = "selectBoardList" resultMap="BoardVO" parameterType="hashmap">
@@ -35,6 +34,8 @@
 		
 	</select>
 	
+	
+	
 	<select id="selectBoardListCnt" resultType="int" parameterType="String">
 		<![CDATA[
 		SELECT
@@ -51,6 +52,18 @@
 		
 	</select>
 	
+	<select id="selectBoard" parameterType="long" resultMap="BoardVO">
+		<![CDATA[
+			SELECT 
+				B.*, U.name AS writer_name
+			FROM 
+				tb_board B INNER JOIN tb_user U ON B.writer_id = U.user_id 
+			WHERE
+				B.idx = #{idx}
+		]]>
+	</select>
+	
+	
 	<insert id="insertBoard" parameterType="boardMap">
 		<![CDATA[
 			INSERT INTO tb_board
@@ -59,4 +72,25 @@
 				(#{title}, #{content}, #{writerId}); 
 		]]>
 	</insert>	
+	
+	<delete id="deleteBoard" parameterType="long">
+		<![CDATA[
+			DELETE FROM tb_board
+			WHERE 
+				idx = #{idx}
+		]]>
+	</delete>
+	
+	<update id="updateBoard" parameterType="boardMap">
+		<![CDATA[
+			UPDATE tb_board
+				SET
+					title = #{title},
+					content = #{content},
+					modify_date = NOW()
+				WHERE 
+					idx = #{idx}
+		]]>
+	</update>
+	
 </mapper>

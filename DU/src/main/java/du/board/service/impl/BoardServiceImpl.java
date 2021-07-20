@@ -55,5 +55,29 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 
+
+	@Override
+	public BoardVO selectBoard(long idx) {
+		// TODO Auto-generated method stub
+		
+		return boardDAO.selectBoard(idx);
+	}
+
+
+	@Override
+	public void deleteBoard(long idx) {
+		// TODO Auto-generated method stub
+		
+		boardDAO.deleteBoard(idx);
+	}
+
+
+	@Override
+	public void updateBoard(BoardVO board) {
+		// TODO Auto-generated method stub
+		
+		boardDAO.updateBoard(board);
+	}
+
 	
 }

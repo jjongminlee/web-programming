@@ -12,4 +12,10 @@ public interface BoardDAO {
 	public int selectBoardListCnt(String title);
 	
 	public void insertBoard(BoardVO board);
+	
+	public BoardVO selectBoard(long idx);
+	
+	public void deleteBoard(long idx);
+	
+	public void updateBoard(BoardVO board);
 }

@@ -32,5 +32,27 @@ public class BoardDAOImpl extends EgovAbstractMapper implements BoardDAO{
 		insert("Board.insertBoard", board);		
 	}
 
+	@Override
+	public BoardVO selectBoard(long idx) {
+		// TODO Auto-generated method stub
+		
+		
+		return selectOne("Board.selectBoard", idx);
+	}
+
+	@Override
+	public void deleteBoard(long idx) {
+		// TODO Auto-generated method stub
+		delete("Board.deleteBoard", idx);
+	}
+
+	@Override
+	public void updateBoard(BoardVO board) {
+		// TODO Auto-generated method stub
+		
+		update("Board.updateBoard", board);
+		
+	}
+
 	
 }
