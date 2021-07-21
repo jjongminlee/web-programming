@@ -12,7 +12,10 @@
 <header>
 		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
 </header>
-<form action="${pageContext.request.contextPath }/boardModify.do" method="post" id="modifyForm">
+<form action="${pageContext.request.contextPath }/boardModify.do" method="post" id="modifyForm" enctype="multipart/form-data">
+	<input type="hidden" name="idx" value="${board.idx }"/>
+	<input type="hidden" name="attIdx" value="${board.attIdx }"/>
+	
 	<table class="table table-light" style="width: 50%;">
 		<tr>
 			<th>제목</th>
@@ -26,8 +29,25 @@
 				<textarea style="width: 100%; height: 100px;" name="content" required><c:out value="${board.content }" ></c:out></textarea>
 			</td>
 		</tr>
+		
+		<tr>
+			<th rowspan="3">첨부파일</th>
+			<td><c:out value="${board.attFilename }"></c:out></td>
+		</tr>
+		
+		<tr>
+			<td>
+				<input type="radio" name="handleType" value="fix" checked="checked"/><c:out value="고정"></c:out>
+				<input type="radio" name="handleType" value="chg" /><c:out value="변경"></c:out>
+				<input type="radio" name="handleType" value="del" /><c:out value="삭제"></c:out>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><input type="file" name="attFile"/></td>
+		</tr>
 	</table>
-	<input type="hidden" name="idx" value="${board.idx }"/>
+
 	
 	<button type="button" class="btn btn-secondary" onclick="history.back(); return false;">이전</button>
 	<button type="submit" class="btn btn-primary" >수정</button>

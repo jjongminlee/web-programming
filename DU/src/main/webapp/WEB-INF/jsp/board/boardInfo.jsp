@@ -16,7 +16,7 @@
 	<table class="table table-light" style="width: 50%;">
 		<tr>
 			<th>제목</th>
-			<td><c:out value="${board.title }"></c:out></td>
+			<td style=" height: 50px;"><c:out value="${board.title }"></c:out></td>
 			<th style= "width: 13%;">작성자</th>
 			<td style= "width: 13%;"><c:out value="${board.writerName }"></c:out></td>
 		</tr>
@@ -25,6 +25,13 @@
 			<th>내용</th>
 			<td colspan="3" style="width: 90%; height: 100px;"><c:out value="${board.content }"></c:out></td>
 			
+		</tr>
+		
+		<tr>
+			<th style="width: 20%;">첨부파일</th>
+			<td colspan="3" >
+				<a href="#" onclick="downloadFile(); return false;">${board.attFilename }</a>
+			</td>
 		</tr>
 		
 	</table>
@@ -41,6 +48,15 @@
 			id="modifyBtn">수정</button>
 	</c:if>
 	
+	<form id="fileDownload" action="${pageContext.request.contextPath}/download/boardAttFile.do" method="post">
+		<input type="hidden" name="boardIdx" value="${board.idx }"/>
+		<input type="hidden" name="idx" value="${board.attIdx }"/>
+	</form>
+
+
+	<form id="postForm">
+		
+	</form>
 
 </body>
 
@@ -53,7 +69,8 @@
 			if(confirm("삭제하시겠습니까?") == true){
 				var path = "${pageContext.request.contextPath }/boardDelete.do";
 				var params = {
-						"idx" : "${board.idx}"
+						"idx" : "${board.idx}",
+						"attIdx" : "${board.attIdx}"
 				}
 				
 				post(path, params);
@@ -74,6 +91,8 @@
 		}
 	}
 	
+	
+	
 	function post(path, params){
 		const form = document.createElement('form');
 		form.method = 'post';
@@ -91,6 +110,14 @@
 		}
 		document.body.appendChild(form);
 		form.submit();
+	}
+	
+	function downloadFile(){
+		var inputIdx = document.querySelector('#fileDownload > input[name="idx"]');
+		
+		if(inputIdx.value){
+			document.forms["fileDownload"].submit();
+		}
 	}
 </script>
 </html>
