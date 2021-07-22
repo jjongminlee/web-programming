@@ -62,7 +62,7 @@
 	<div>
 		<button type="button" id="okbtn">등록</button>
 		<button type="reset">초기화</button>
-		<button type="button" id="backbtn">이전</button>
+		<button type="button" id="backbtn" onclick="history.back(); return false;">이전</button>
 	</div>
 </form>
 </body>

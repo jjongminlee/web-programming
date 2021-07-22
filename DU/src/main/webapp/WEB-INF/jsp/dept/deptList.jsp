@@ -16,10 +16,9 @@
 </head>
 <body>
 <header>
-		<div class="logoDiv">
-			<img alt="대구대학교 로고" src="images/image.png">
-		</div>
-</header>
+		<jsp:include page="/WEB-INF/jsp/layout/header.jsp"></jsp:include>
+	
+	</header>
 <table class="table table-dark table-hover">
 	<thead>
 		<tr>

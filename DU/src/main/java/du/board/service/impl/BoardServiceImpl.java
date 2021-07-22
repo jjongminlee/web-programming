@@ -176,7 +176,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		// 4. real file copy
 		File newFile = new File(filePath + File.separator + newFilename);
-		multipartFile.transferTo(newFile); // 서버에 저장될 파일 경로  C:/Temp/2021-07-21
+		multipartFile.transferTo(newFile); // 서버에 저장될 파일 경로  C:/Temp/날짜.
 	}
 
 

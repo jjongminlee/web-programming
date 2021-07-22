@@ -21,12 +21,17 @@ import du.board.domain.BoardVO;
 import du.board.service.BoardService;
 import du.common.DownloadView;
 import du.common.Pagination;
+import du.reply.domain.ReplyVO;
+import du.reply.service.ReplyService;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private ReplyService replyService;
 	
 	@RequestMapping("/boardListPage.do")
 	public ModelAndView boardListPage(
@@ -69,13 +74,18 @@ public class BoardController {
 		
 		BoardVO board = boardService.selectBoard(idx);
 		
-		System.out.println(board.getTitle());
-		System.out.println(board.getContent());
-		System.out.println(board.getWriterId());
+//		System.out.println(board.getTitle());
+//		System.out.println(board.getContent());
+//		System.out.println(board.getWriterId());
 		
 		mav.addObject("board", board);
+		
+		List<ReplyVO> replyList = replyService.selectReply(idx);
+		mav.addObject("replyList", replyList);
+		
 		return mav;
 	}
+	
 	
 	@RequestMapping("/boardDelete.do")
 	public String boardDelete( BoardVO boardVO) {

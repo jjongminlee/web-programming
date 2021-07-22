@@ -32,11 +32,11 @@
 		
 		<tr>
 			<th rowspan="3">첨부파일</th>
-			<td><c:out value="${board.attFilename }"></c:out></td>
+			<td colspan="3"><c:out value="${board.attFilename }"></c:out></td>
 		</tr>
 		
-		<tr>
-			<td>
+		<tr colspan="4">
+			<td colspan="4">
 				<input type="radio" name="handleType" value="fix" checked="checked"/><c:out value="고정"></c:out>
 				<input type="radio" name="handleType" value="chg" /><c:out value="변경"></c:out>
 				<input type="radio" name="handleType" value="del" /><c:out value="삭제"></c:out>
@@ -44,7 +44,7 @@
 		</tr>
 		
 		<tr>
-			<td><input type="file" name="attFile"/></td>
+			<td colspan="4"><input type="file" name="attFile"/></td>
 		</tr>
 	</table>
 

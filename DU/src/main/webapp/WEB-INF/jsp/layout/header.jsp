@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/main.css">
 </head>
 <body>
-<header>
+
 		
 		<div class="logoDiv">
 
@@ -24,19 +24,19 @@
 
 		<ul class="infoUl">
 
-			<li><a href="deptPage.do">부서정보</a></li>
+			<li><a onClick="window.location.href='${pageContext.request.contextPath }/deptPage.do'">부서정보</a></li>
 
 		</ul>
 
-		<div class="userInfoDiv">
+		<div class="userInfoDiv" >
 
 			반갑습니다! <c:out value="${USER.name}"></c:out>님
 
-			<button type="button" onClick="window.location.href='logout.do'" class="btn btn-primary btn-sm">로그아웃</button>
+			<button type="button" onClick="window.location.href='${pageContext.request.contextPath }/logout.do'" class="btn btn-primary btn-sm">로그아웃</button>
 
-		    <button type="button" onClick="window.location.href='userInfo.do'" class="btn btn-outline-primary btn-sm">내정보</button>
+		    <button type="button" onClick="window.location.href='${pageContext.request.contextPath }/userInfo.do'" class="btn btn-outline-primary btn-sm">내정보</button>
 
 		</div>
-</header>
+
 </body>
 </html>
