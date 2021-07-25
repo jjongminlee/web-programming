@@ -65,9 +65,13 @@
 				<c:if test="${pagination.next}">
 					<li class="page-item"><a class="page-link" href="#" onClick="fn_next('${pagination.range}', 
 						'${pagination.range}', '${pagination.rangeSize}')" >Next</a></li>
+					
 				</c:if>
+				<button type="button" class="page-link" onclick="window.history.go(-1)">이전</button>
 			</ul>
+			
 		</div>
+		
 </body>
 
 <script>

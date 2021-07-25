@@ -29,6 +29,7 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-info" >등록</button>
+		<button type="button" class="btn btn-info" onclick="window.history.go(-1)">이전</button>
 	</form>
 	
 </body>
